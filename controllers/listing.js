@@ -5,6 +5,10 @@ const { listingSchema, reviewSchema } = require("../schema.js");
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const mapToken = process.env.MAP_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken: mapToken });
+const multer = require("multer");
+
+const { storage } = require("../cloudConfig.js");
+const upload = multer({ storage });
 
 module.exports.index = async (req, res) => {
   const allListings = await Listing.find({});
